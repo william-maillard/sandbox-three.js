@@ -1,0 +1,19 @@
+{
+  "name": "sandbox-three.js",
+  "version": "1.0.0",
+  "description": "test three.js",
+  "main": "index.js",
+  "repository": "https://github.com/william-maillard/sandbox-three.js",
+  "author": "William <81483590+william-maillard@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.174.0"
+  },
+  "scripts": {
+    "start": "vite src/"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vite": "^6.2.2"
+  }
+}
