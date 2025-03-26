@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import WebGL from 'three/addons/capabilities/WebGL.js';
-import { cube } from './cube.js';
-import { arrow } from './arrow.js';
-import { animate } from './animation.js';
+import { cube } from './basic/cube.js';
+import { arrow } from './basic/arrow.js';
+import { animate } from './helpers/animation.js';
 
 
 
