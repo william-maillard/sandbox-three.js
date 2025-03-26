@@ -17,12 +17,8 @@ cube.mesh = new Mesh(
     cube.geometry, cube.material
 );
 
-function animate_cube() {
+export function animate_cube() {
 
     cube.mesh.rotation.x += 0.01;
     cube.mesh.rotation.y += 0.01;
-
-    renderer.render(
-        scene, camera
-    )
 }
