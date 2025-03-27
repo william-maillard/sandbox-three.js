@@ -1,4 +1,5 @@
 import { PerspectiveCamera } from 'three';
+import { world_limit } from '../helpers/world.js'
 
 export const camera_direction = {
     UP: 0,
@@ -22,25 +23,65 @@ export const camera = new PerspectiveCamera(
 camera.position.z = 4;
 camera.position.y = 0.5;
 
+let camera_movement_speed = 0.1;
 export function move_camera(direction) {
     switch (direction) {
         case camera_direction.UP:
-            camera.position.y += 0.1;
+            if (camera.position.y < world_limit.Y_MAX) {
+                camera.position.y += camera_movement_speed;
+            }
             break;
         case camera_direction.DOWN:
-            camera.position.y -= 0.1;
+            if (camera.position.y > world_limit.Y_MIN) {
+                camera.position.y -= camera_movement_speed;
+            }
             break;
         case camera_direction.LEFT:
-            camera.position.x -= 0.1;
+            if (camera.position.x > world_limit.X_MIN) {
+                camera.position.x -= camera_movement_speed;
+            }
             break;
         case camera_direction.RIGHT:
-            camera.position.x += 0.1;
+            if (camera.position.x < world_limit.X_MAX) {
+                camera.position.x += camera_movement_speed;
+            }
             break;
         case camera_direction.FORWARD:
-            camera.position.z -= 0.1;
+            if (camera.position.z < world_limit.Z_MAX) {
+                camera.position.z += camera_movement_speed;
+            }
             break;
         case camera_direction.BACKWARD:
-            camera.position.z += 0.1;
+            if (camera.position.z > world_limit.Z_MIN) {
+                camera.position.z -= camera_movement_speed;
+            }
+            break;
+    }
+}
+
+let camera_rotation_speed = 0.05; // Vitesse de rotation
+export function rotate_camera(direction) {
+    let angle = camera_rotation_speed;
+
+    switch (direction) {
+        case camera_direction.UP:  // Rotation vers le haut (autour de l'axe X)
+            camera.position.y = camera.position.y * Math.cos(angle) - camera.position.z * Math.sin(angle);
+            camera.position.z = camera.position.y * Math.sin(angle) + camera.position.z * Math.cos(angle);
+            break;
+
+        case camera_direction.DOWN:  // Rotation vers le bas (autour de l'axe X)
+            camera.position.y = camera.position.y * Math.cos(-angle) - camera.position.z * Math.sin(-angle);
+            camera.position.z = camera.position.y * Math.sin(-angle) + camera.position.z * Math.cos(-angle);
+            break;
+
+        case camera_direction.LEFT:  // Rotation vers la gauche (autour de l'axe Y)
+            camera.position.x = camera.position.x * Math.cos(angle) - camera.position.z * Math.sin(angle);
+            camera.position.z = camera.position.x * Math.sin(angle) + camera.position.z * Math.cos(angle);
+            break;
+
+        case camera_direction.RIGHT:  // Rotation vers la droite (autour de l'axe Y)
+            camera.position.x = camera.position.x * Math.cos(-angle) - camera.position.z * Math.sin(-angle);
+            camera.position.z = camera.position.x * Math.sin(-angle) + camera.position.z * Math.cos(-angle);
             break;
     }
 }

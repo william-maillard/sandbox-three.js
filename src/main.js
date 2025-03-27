@@ -3,7 +3,8 @@ import WebGL from 'three/addons/capabilities/WebGL.js';
 import { cube } from './basic/cube.js';
 import { arrow } from './basic/arrow.js';
 import { animate } from './helpers/animation.js';
-
+import { setup_inputs_handler } from './helpers/inputs_handler.js';
+import { load_walls } from './3D_models/walls.js';
 
 
 if(!WebGL.isWebGL2Available()) 
@@ -39,3 +40,7 @@ renderer.setAnimationLoop( animate );
 
 // Changer le fond avec une couleur unie
 scene.background = new THREE.Color(0x87CEEB);  // Exemple avec une couleur bleu ciel
+
+
+setup_inputs_handler();
+load_walls(scene);
