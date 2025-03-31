@@ -3,7 +3,7 @@ import { PerspectiveCamera } from 'three';
 import { world_limit } from '../helpers/world.js'
 
 // rotation center
-export const pivot = new THREE.Vector3(0, 0.5, 0);
+export const pivot = new THREE.Vector3(0, 0, 0);
 // To convert mouse movement on the screen axes
 // to a movement in the 3D screen
 const raycaster = new THREE.Raycaster();
@@ -74,12 +74,15 @@ export function getVelocityX() { return velocityX; }
 let velocityY = 0;
 export function setVelocityY(y) { velocityY = y; }
 export function getVelocityY() { return velocityY; }
-const friction = 0.95; // Gradual speed reduction
+const friction = 0.65; // Gradual speed reduction
+export function setFriction(x) { friction = x }
+export function getFriction() { return friction }
 let pitch = 0;
+export function getPitch() { return pitch }
 const maxPitch = Math.PI / 2.5;
 
-let camera_rotation_speed = 0.005; // Vitesse de rotation
-export function rotate_camera(thetaX, thetaY) {
+let camera_rotation_speed = 0.002; // Vitesse de rotation
+export function rotate_camera(thetaY, thetaX) {
     let offset = new THREE.Vector3().subVectors(camera.position, pivot);
 
     // Rotate around Y-axis (horizontal rotation)
@@ -99,9 +102,15 @@ export function rotate_camera(thetaX, thetaY) {
 
     // Apply vertical rotation limits
     if(newY > -maxPitch * radius  &&  newY < maxPitch * radius) {
-        offster.y = newY;
+        offset.y = newY;
         offset.z = newZ;
     }
+
+    // Ensure the camera does not go below the ground (y = 0)
+    if (pivot.y + offset.y < 0) {
+        offset.y = -pivot.y; // Adjust to stay at or above ground level
+    }
+    
 
     // Update camera position and direction
     camera.position.copy(pivot.clone().add(offset));

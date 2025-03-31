@@ -25,16 +25,20 @@ export function setup_inputs_handler() {
     document.addEventListener('mouseup', handleMouseUp);
 }
 
+// if we want to add command personalisation later
+let mouseButtonForCameraMovement = mouseButton.LEFT;
 function handleMouseMove(event) {
-    let deltaX = event.movementX;
-    let deltaY = event.movementY;
+        if (mouse.isButtonClicked[mouseButtonForCameraMovement]) {
+        let deltaX = event.movementX;
+        let deltaY = event.movementY;
 
-    setVelocityX(
-        getVelocityX() + deltaX * 0.002 
-    );
-    setVelocityY(
-        getVelocityY() + deltaY * 0.002
-    );
+        setVelocityX(
+            getVelocityX() + deltaX * 0.002 
+        );
+        setVelocityY(
+            getVelocityY() + deltaY * 0.002
+        );
+    }
 }
 
 function handleMouseDown(event) {
