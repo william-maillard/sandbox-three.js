@@ -26,6 +26,19 @@
       "no-var": "error",
       "arrow-spacing": "error",
       "space-before-function-paren": ["error", "never"]
-    }
+    },
+    "overrides": [
+        {
+        "files": ["*.json"],
+        "extends": ["plugin:jsonc/recommended-with-jsonc"],
+        "parser": "jsonc-eslint-parser",
+        "rules": {
+            "jsonc/indent": ["error", 2], 
+            "jsonc/comma-dangle": ["error", "never"], 
+            "jsonc/sort-keys": ["error"],
+            "jsonc/no-octal-escape": "error"
+        }
+        }
+    ]
   }
   
