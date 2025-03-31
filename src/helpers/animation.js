@@ -4,7 +4,7 @@ import { human_animations } from '../objects/3D_models/human.js';
 import { renderer, scene } from '../main.js';
 import { camera }  from './camera.js';
 
-export function animate() {
+export function animate() {    
     // update the model animation
     if (human_animations) {
         human_animations.update(0.01);

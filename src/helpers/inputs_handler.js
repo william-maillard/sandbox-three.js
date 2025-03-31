@@ -11,7 +11,7 @@ let mouseButton = {
 };
 
 let mouse = {
-    coord: new THREE.Vector2(0, 0);
+    coord: new THREE.Vector2(0, 0),
     x: 0, lastX : 0,
     y: 0, lastY : 0,
     isButtonClicked: [false, false, false],
@@ -47,7 +47,4 @@ function handleMouseUp(event) {
 
 function handleKeyDown(event) {
     move_camera(event.key);
-}
-function handleMouseMove(event) {
-
 }
