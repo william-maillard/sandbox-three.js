@@ -1,0 +1,44 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/recommended",
+      "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+      "no-console": "warn",
+      "eqeqeq": "error",
+      "curly": "error",
+      "semi": ["error", "always"],
+      "quotes": ["error", "double", { "avoidEscape": true }],
+      "indent": ["error", 2],
+      "comma-dangle": ["error", "always-multiline"],
+      "prefer-const": "error",
+      "no-var": "error",
+      "arrow-spacing": "error",
+      "space-before-function-paren": ["error", "never"]
+    },
+    "overrides": [
+        {
+        "files": ["*.json"],
+        "extends": ["plugin:jsonc/recommended-with-jsonc"],
+        "parser": "jsonc-eslint-parser",
+        "rules": {
+            "jsonc/indent": ["error", 2], 
+            "jsonc/comma-dangle": ["error", "never"], 
+            "jsonc/sort-keys": ["error"],
+            "jsonc/no-octal-escape": "error"
+        }
+        }
+    ]
+  }
+  
