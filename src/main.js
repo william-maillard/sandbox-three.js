@@ -7,6 +7,9 @@ import { setup_inputs_handler } from './helpers/inputs_handler.js';
 import { load_walls } from './objects/3D_models/walls.js';
 import { initGround } from './objects/scene/ground.js';
 import { initSky } from './objects/scene/sky.js';
+import { initBackground } from './objects/scene/background.js';
+import init from 'three/examples/jsm/offscreen/scene.js';
+
 if(!WebGL.isWebGL2Available()) 
 {
     const warning = WebGL.getWebGL2ErrorMessage();
@@ -22,8 +25,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // by default set it to (0, 0, 0)
-scene.add(cube.mesh);
-scene.add(arrow.line);
+// scene.add(cube.mesh);
+// scene.add(arrow.line);
 
 // In order to see the textures of the 3D model, we need to add a light
 const ambientLight = new THREE.AmbientLight(0xffffff, 1);  // Lumière douce et faible
@@ -35,6 +38,7 @@ scene.background = new THREE.Color(0x87CEEB);  // Exemple avec une couleur bleu 
 
 initGround(scene);
 initSky(scene);
+initBackground(scene);
 
 setup_inputs_handler();
 load_walls(scene);

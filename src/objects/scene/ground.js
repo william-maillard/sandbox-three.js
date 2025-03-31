@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { texture } from 'three/tsl';
 
 export function initGround(scene) {
     const planeGeometry = new THREE.PlaneGeometry(100, 100);
@@ -18,5 +17,6 @@ export function initGround(scene) {
     })
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -Math.PI / 2;
+
     scene.add(plane);
 }
