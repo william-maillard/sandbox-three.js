@@ -75,7 +75,6 @@ let velocityY = 0;
 export function setVelocityY(y) { velocityY = y; }
 export function getVelocityY() { return velocityY; }
 const friction = 0.65; // Gradual speed reduction
-export function setFriction(x) { friction = x }
 export function getFriction() { return friction }
 let pitch = 0;
 export function getPitch() { return pitch }
