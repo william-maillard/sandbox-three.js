@@ -6,8 +6,7 @@ import { animate } from './helpers/animation.js';
 import { setup_inputs_handler } from './helpers/inputs_handler.js';
 import { load_walls } from './objects/3D_models/walls.js';
 import { initGround } from './objects/scene/ground.js';
-import init from 'three/examples/jsm/offscreen/scene.js';
-
+import { initSky } from './objects/scene/sky.js';
 if(!WebGL.isWebGL2Available()) 
 {
     const warning = WebGL.getWebGL2ErrorMessage();
@@ -35,6 +34,7 @@ renderer.setAnimationLoop( animate );
 scene.background = new THREE.Color(0x87CEEB);  // Exemple avec une couleur bleu ciel
 
 initGround(scene);
+initSky(scene);
 
 setup_inputs_handler();
 load_walls(scene);

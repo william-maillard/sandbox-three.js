@@ -1,10 +1,15 @@
 import * as THREE from 'three';
+import { texture } from 'three/tsl';
 
 export function initGround(scene) {
-    const planeGeometry = new THREE.PlaneGeometry(10, 10);
+    const planeGeometry = new THREE.PlaneGeometry(100, 100);
     const loader = new THREE.TextureLoader();
 
-    const texture = loader.load('textures/ground_wood.jpg');
+    const texture = loader.load('textures/ground_wood.jpg', (texture) => {
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set(10, 10);
+    });
     const planeMaterial = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
