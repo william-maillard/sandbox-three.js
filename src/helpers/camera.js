@@ -2,6 +2,14 @@ import * as THREE from 'three';
 import { PerspectiveCamera } from 'three';
 import { world_limit } from '../helpers/world.js'
 
+// rotation center
+export const pivot = new THREE.Vector3(0, 0.5, 0);
+// To convert mouse movement on the screen axes
+// to a movement in the 3D screen
+const raycaster = new THREE.Raycaster();
+const radius = 5; // Distance caméra ↔ pivot
+
+
 export const camera_direction = {
     UP: "a",
     DOWN: "q",
@@ -22,8 +30,8 @@ export const camera = new PerspectiveCamera(
 );
 
 // initial position of the camera
-camera.position.z = 4;
-camera.position.y = 0.5;
+camera.position.set(0, 0.5, radius);
+camera.lookAt(pivot)
 
 // vector reprsenting the camera direction
 let camera_direction_vector = new THREE.Vector3(0, 0, -1);
@@ -59,29 +67,39 @@ export function move_camera(direction) {
     }
 }
 
+// Variables for inertia effect
+export var velocityX = 0;
+export var velocityY = 0;
+const friction = 0.95; // Gradual speed reduction
+let pitch = 0;
+const maxPitch = Math.PI / 2.5;
+
 let camera_rotation_speed = 0.005; // Vitesse de rotation
-export function rotate_camera(direction) {
-    let angle = camera_rotation_speed;
+export function rotate_camera(thetaX, thetaY) {
+    let offset = new THREE.Vector3().subVectors(camera.position, pivot);
 
-    switch (direction) {
-        case camera_direction.UP:  // Rotation vers le haut (autour de l'axe X)
-            camera.position.y = camera.position.y * Math.cos(angle) - camera.position.z * Math.sin(angle);
-            camera.position.z = camera.position.y * Math.sin(angle) + camera.position.z * Math.cos(angle);
-            break;
+    // Rotate around Y-axis (horizontal rotation)
+    let cosY = Math.cos(thetaY);
+    let sinY = Math.sin(thetaY);
+    let newX = offset.x * cosY - offset.z * sinY;
+    let newZ = offset.x * sinY + offset.z * cosY;
 
-        case camera_direction.DOWN:  // Rotation vers le bas (autour de l'axe X)
-            camera.position.y = camera.position.y * Math.cos(-angle) - camera.position.z * Math.sin(-angle);
-            camera.position.z = camera.position.y * Math.sin(-angle) + camera.position.z * Math.cos(-angle);
-            break;
+    offset.x = newX;
+    offset.z = newZ;
 
-        case camera_direction.LEFT:  // Rotation vers la gauche (autour de l'axe Y)
-            camera.position.x = camera.position.x * Math.cos(angle) - camera.position.z * Math.sin(angle);
-            camera.position.z = camera.position.x * Math.sin(angle) + camera.position.z * Math.cos(angle);
-            break;
+    // Rotate around X-axis (vertical rotation)
+    let cosX = Math.cos(thetaX);
+    let sinX = Math.sin(thetaX);
+    let newY = offset.y * cosX - offset.z * sinX;
+    let newZ2 = offset.y * sinX + offset.z * cosX;
 
-        case camera_direction.RIGHT:  // Rotation vers la droite (autour de l'axe Y)
-            camera.position.x = camera.position.x * Math.cos(-angle) - camera.position.z * Math.sin(-angle);
-            camera.position.z = camera.position.x * Math.sin(-angle) + camera.position.z * Math.cos(-angle);
-            break;
+    // Apply vertical rotation limits
+    if(newY > -maxPitch * radius  &&  newY < maxPitch * radius) {
+        offster.y = newY;
+        offset.z = newZ;
     }
+
+    // Update camera position and direction
+    camera.position.copy(pivot.clone().add(offset));
+    camera.lookAt(pivot);
 }

@@ -17,10 +17,7 @@ export const scene = new THREE.Scene();
 export const renderer = new THREE.WebGLRenderer();
 
 // The app take the whole screen
-renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
-);
+renderer.setSize(window.innerWidth, window.innerHeight);
 
 // We add the canvas element of the scene to the page
 document.body.appendChild(renderer.domElement);
