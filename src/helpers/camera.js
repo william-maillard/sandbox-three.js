@@ -3,7 +3,7 @@ import { PerspectiveCamera } from 'three';
 import { world_limit } from '../helpers/world.js'
 
 // rotation center
-export const pivot = new THREE.Vector3(0, 0, 0);
+export const pivot = new THREE.Vector3(0, 2, 0);
 // To convert mouse movement on the screen axes
 // to a movement in the 3D screen
 const raycaster = new THREE.Raycaster();
@@ -30,7 +30,7 @@ export const camera = new PerspectiveCamera(
 );
 
 // initial position of the camera
-camera.position.set(0, 0.5, radius);
+camera.position.set(0, 3, radius);
 camera.lookAt(pivot)
 
 // vector reprsenting the camera direction
