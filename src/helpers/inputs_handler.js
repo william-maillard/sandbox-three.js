@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { move_camera, camera_direction, rotate_camera, velocityX, velocityY } from './camera.js'
+import { move_camera, setVelocityX, setVelocityY } from './camera.js'
 
 
 
@@ -31,6 +31,11 @@ function handleMouseMove(event) {
 
     velocityX += deltaX * 0.002; // Adjust horizontal speed
     velocityY += deltaY * 0.002; // Adjust vertical speed
+
+    setVelocityX(
+        velocityX + deltaX * 0.002; // Adjust horizontal speed
+    );
+    setVelocity
 }
 
 function handleMouseDown(event) {

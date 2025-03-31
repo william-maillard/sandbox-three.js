@@ -68,8 +68,12 @@ export function move_camera(direction) {
 }
 
 // Variables for inertia effect
-export var velocityX = 0;
-export var velocityY = 0;
+let velocityX = 0;
+export function setVelocityX(x) { velocityX = x; }
+export function getVelocityX() { return velocityX; }
+let velocityY = 0;
+export function setVelocityY(y) { velocityY = y; }
+export function getVelocityY() { return velocityY; }
 const friction = 0.95; // Gradual speed reduction
 let pitch = 0;
 const maxPitch = Math.PI / 2.5;
