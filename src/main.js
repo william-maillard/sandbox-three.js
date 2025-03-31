@@ -4,7 +4,7 @@ import { cube } from './objects/basic_models/cube.js';
 import { arrow } from './objects/basic_models/arrow.js';
 import { animate } from './helpers/animation.js';
 import { setup_inputs_handler } from './helpers/inputs_handler.js';
-import { load_walls } from './3D_models/walls.js';
+import { load_walls } from './objects/3D_models/walls.js';
 
 
 if(!WebGL.isWebGL2Available()) 
