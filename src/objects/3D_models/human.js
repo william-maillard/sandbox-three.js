@@ -1,6 +1,6 @@
 import { AnimationMixer } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { scene } from '../main.js';
+import { scene } from '../../main.js';
 
 const loader = new GLTFLoader();
 export var human_animations = undefined;

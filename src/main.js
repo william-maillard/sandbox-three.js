@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import WebGL from 'three/addons/capabilities/WebGL.js';
-import { cube } from './basic/cube.js';
-import { arrow } from './basic/arrow.js';
+import { cube } from './objects/basic_models/cube.js';
+import { arrow } from './objects/basic_models/arrow.js';
 import { animate } from './helpers/animation.js';
 import { setup_inputs_handler } from './helpers/inputs_handler.js';
 import { load_walls } from './3D_models/walls.js';
