@@ -9,6 +9,7 @@ import { initGround } from './objects/scene/ground.js';
 import { initSky } from './objects/scene/sky.js';
 import { initBackground } from './objects/scene/background.js';
 import init from 'three/examples/jsm/offscreen/scene.js';
+import { rubiks} from './rubiks/rubiksCube.js';
 
 if(!WebGL.isWebGL2Available()) 
 {
@@ -39,6 +40,8 @@ scene.background = new THREE.Color(0x87CEEB);  // Exemple avec une couleur bleu 
 initGround(scene);
 initSky(scene);
 initBackground(scene);
+
+scene.add(rubiks.drawCube());
 
 setup_inputs_handler();
 load_walls(scene);

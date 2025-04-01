@@ -2,6 +2,7 @@ import { animate_arrow } from '../objects/basic_models/arrow.js';
 import { animate_cube } from '../objects/basic_models/cube.js';
 import { human_animations } from '../objects/3D_models/human.js';
 import { renderer, scene } from '../main.js';
+import { rubiks } from '../rubiks/rubiksCube.js';
 import { camera, setVelocityX, setVelocityY, getVelocityX, getVelocityY, rotate_camera, getFriction }  from './camera.js';
 
 export function animate() {    
@@ -26,6 +27,9 @@ export function animate() {
 
     animate_cube();
     animate_arrow();
+
+    // TODO : remove, for testing purpose
+    rubiks.rotate(1, 1);
 
     renderer.render(scene, camera);  // Rendu de la scène dans chaque frame
 }

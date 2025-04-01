@@ -19,14 +19,15 @@ let mouse = {
 
 export function setup_inputs_handler() {
     document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mousedown', handleMouseDown);
     // we can also add it to window to prevent browser scrall page bug is it appears
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener("contextmenu", (event) => event.preventDefault());
 }
 
 // if we want to add command personalisation later
-let mouseButtonForCameraMovement = mouseButton.LEFT;
+let mouseButtonForCameraMovement = mouseButton.RIGHT;
 function handleMouseMove(event) {
         if (mouse.isButtonClicked[mouseButtonForCameraMovement]) {
         let deltaX = event.movementX;
