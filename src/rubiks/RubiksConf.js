@@ -1,0 +1,3 @@
+RubiksConfiguration = {
+    size: 2,
+}
