@@ -1,8 +1,26 @@
 import { RubiksColors } from "./colors";
+import { RubiksConfiguration } from './RubiksConf';
 
 export class RubiksFace {
-    constructor(tiles) {
+    constructor(tiles, number) {
+        this.number = number;
         this.tiles = tiles;
+        // modify the position of tiles amongs the face
+        let middle = RubiksConfiguration.nbTilesPerFace / 2;
+        let i = 0;
+        let j = 0;
+        for(let tile of this.tiles) {
+            tile.setPosition({
+                x: (i - 1) * RubiksConfiguration.tileSize, 
+                y: j * RubiksConfiguration.tileSize, 
+                z: this.number * RubiksConfiguration.tileSize
+            });
+            i++;
+            if (i > middle) {
+                i = -middle;
+                j++;
+            }
+        }
         this.color = null;
         this.isFilled();
     }

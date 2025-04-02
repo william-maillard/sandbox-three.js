@@ -1,17 +1,16 @@
 import * as THREE from 'three';
 import { RubiksColors, RubiksColorsMaterials } from "./colors";
-import { RubiksCube } from "./rubiksCube";
+import { RubiksConfiguration } from './RubiksConf';
 
-class RubiksTile {
-    static tile_size = RubiksCube.size / RubiksCube.nbTilesPerFace;
-    static geometry = new THREE.BoxGeometry(tile_size, tile_size, tile_size);
-    
+class RubiksTile {  
 
-    constructor(color, position) {
+    constructor(color, groupTiles) {
         this.color = color;
         this.material = RubiksColorsMaterials[color];
-        this.mesh = new THREE.Mesh(RubiksTile.geometry, this.material);
-        this.mesh.position.set(position.x, position.y, position.z);
+        console.log(this.material);
+        this.mesh = new THREE.Mesh(RubiksConfiguration.tileGeometry, this.material);
+        // this.mesh.position.set(position.x, position.y, position.z);
+        groupTiles.add(this.mesh);
     }
 
     getColor() {

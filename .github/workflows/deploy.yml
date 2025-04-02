@@ -20,4 +20,3 @@ jobs:
 
       - name: Deploy to production
         run: yarn deploy
-
