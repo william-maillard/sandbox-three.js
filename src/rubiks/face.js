@@ -37,3 +37,12 @@ export class RubiksFace {
         return true;
     }
 }
+
+const RubiksFacesOrientationsEnum = Object.freeze({
+    FRONT: 0,
+    BACK: 1,
+    LEFT: 2,
+    RIGHT: 3,
+    TOP: 4,
+    BOTTOM: 5
+});
