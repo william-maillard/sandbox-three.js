@@ -9,6 +9,8 @@ export class RubiksFace {
         let middle = RubiksConfiguration.nbTilesPerFace / 2;
         let i = 0;
         let j = 0;
+
+        // TODO : place the tiles depending on the face number according to the cube's group position
         for(let tile of this.tiles) {
             tile.setPosition({
                 x: (i - 1) * RubiksConfiguration.tileSize, 
